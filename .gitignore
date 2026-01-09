@@ -5,6 +5,7 @@ __pycache__/
 *.pyd
 *.dll
 *.exe
+*.mp4
 *.avi
 *.mov
 outputs/
