@@ -1,10 +1,3 @@
-"""
-PPE AI Safety Monitoring System
-Enterprise-grade YOLOv8-powered PPE compliance detection system
-Author: Safety AI Team
-Version: 2.0.0
-"""
-
 import streamlit as st
 import cv2
 import os
@@ -17,7 +10,6 @@ from pathlib import Path
 from typing import Optional, Dict, Tuple
 import logging
 
-# ================= CONFIGURATION =================
 class Config:
     """Application configuration constants"""
     UPLOAD_DIR = Path("uploads")
@@ -36,18 +28,15 @@ class Config:
     PAGE_ICON = "🦺"
     LAYOUT = "wide"
 
-# Initialize directories
 Config.UPLOAD_DIR.mkdir(exist_ok=True)
 Config.OUTPUT_DIR.mkdir(exist_ok=True)
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# ================= PAGE CONFIGURATION =================
 st.set_page_config(
     page_title=Config.PAGE_TITLE,
     layout=Config.LAYOUT,
@@ -55,7 +44,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ================= MODEL MANAGEMENT =================
 @st.cache_resource
 def load_yolo_model() -> YOLO:
     """
@@ -76,7 +64,6 @@ def load_yolo_model() -> YOLO:
 
 model = load_yolo_model()
 
-# ================= STYLING =================
 def inject_custom_css() -> None:
     """Inject custom CSS styling into the Streamlit app"""
     st.markdown("""
@@ -185,7 +172,7 @@ def inject_custom_css() -> None:
             font-size: 1.2rem;
         }
         
-        /* ========== INFO GRID ========== */
+       
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -582,7 +569,7 @@ def render_footer() -> None:
     </div>
     """, unsafe_allow_html=True)
 
-# ================= VIDEO PROCESSING =================
+
 def save_uploaded_file(uploaded_file, destination: Path) -> None:
     """
     Save uploaded file to disk
@@ -806,6 +793,5 @@ def main():
     # Render footer
     render_footer()
 
-# ================= APPLICATION ENTRY POINT =================
 if __name__ == "__main__":
     main()
