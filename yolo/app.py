@@ -11,7 +11,7 @@ from typing import Optional, Dict, Tuple
 import logging
 
 class Config:
-    """Application configuration constants"""
+   
     UPLOAD_DIR = Path("uploads")
     OUTPUT_DIR = Path("outputs")
     MODEL_PATH = Path("model/best.pt")
@@ -474,12 +474,7 @@ def render_features_section() -> None:
     st.markdown('</div>', unsafe_allow_html=True)
 
 def render_upload_section() -> Optional[st.runtime.uploaded_file_manager.UploadedFile]:
-    """
-    Render the video upload section
-    
-    Returns:
-        Optional uploaded video file
-    """
+  
     st.markdown('<div class="pro-card">', unsafe_allow_html=True)
     st.markdown('<h3><span class="card-icon">📤</span>Upload Video</h3>', unsafe_allow_html=True)
     
@@ -571,27 +566,13 @@ def render_footer() -> None:
 
 
 def save_uploaded_file(uploaded_file, destination: Path) -> None:
-    """
-    Save uploaded file to disk
-    
-    Args:
-        uploaded_file: Streamlit uploaded file object
-        destination: Destination path
-    """
+   
     with open(destination, "wb") as f:
         f.write(uploaded_file.read())
     logger.info(f"Saved uploaded file to {destination}")
 
 def get_video_properties(video_path: str) -> Tuple[float, int, int, int]:
-    """
-    Extract video properties
-    
-    Args:
-        video_path: Path to video file
-        
-    Returns:
-        Tuple of (fps, width, height, total_frames)
-    """
+   
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS) or Config.DEFAULT_FPS
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -667,13 +648,7 @@ def process_video_with_yolo(
     return stats
 
 def encode_to_h264(input_path: str, output_path: str) -> None:
-    """
-    Encode video to H.264 format
-    
-    Args:
-        input_path: Input video path
-        output_path: Output video path
-    """
+   
     ffmpeg_path = imageio_ffmpeg.get_ffmpeg_exe()
     
     cmd = [
